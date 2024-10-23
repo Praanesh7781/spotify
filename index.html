@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Search App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to the Spotify Search App</h1>
+    <button id="login-button">Login with Spotify</button>
+    <div id="search-container" style="display:none;">
+        <input type="text" id="search-input" placeholder="Search for a song...">
+        <button id="search-button">Search</button>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        const clientId = 'YOUR_SPOTIFY_CLIENT_ID'; // Replace with your Spotify client ID
+        const redirectUri = 'http://localhost:3000/callback';
+        const authEndpoint = 'https://accounts.spotify.com/authorize';
+        const scopes = [
+            'user-read-private',
+            'user-read-email',
+            'playlist-modify-public',
+            'playlist-modify-private'
+        ];
+
+        document.getElementById('login-button').addEventListener('click', () => {
+            window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+        });
+
+        function initializeApp() {
+            const accessToken = window.localStorage.getItem('access_token');
+            if (accessToken) {
+                document.getElementById('login-button').style.display = 'none';
+                document.getElementById('search-container').style.display = 'block';
+            } else {
+                authenticate();
+            }
+        }
+
+        initializeApp();
+    </script>
+</body>
+</html>

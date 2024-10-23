@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <script>
+        // Parse access token from URL
+        const hash = window.location.hash;
+        if (hash) {
+            const accessToken = hash.split('&')[0].split('=')[1];
+            window.localStorage.setItem('access_token', accessToken);
+            window.location.href = 'index.html'; // Redirect to index.html
+        } else {
+            // Redirect back to index.html if no token found
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

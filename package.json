@@ -1,0 +1,16 @@
+{
+  "name": "spotify-search-app",
+  "version": "1.0.0",
+  "description": "A simple app to search Spotify songs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
